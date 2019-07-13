@@ -133,8 +133,8 @@ def num_points_scored(player)
   game_hash[:away][:players].select{|item| 
    if item[:player_name] == player 
      return item[:points]
-end
- }
+   end
+    }
 end
 def shoe_size(player)
  game_hash[:home][:players].select{ |item| 
