@@ -252,19 +252,18 @@ away_team=0
  
  def long_name_steals_a_ton?
    name=player_with_longest_name
-    game_hash[:home][:players].select{|item| 
-    
- if item[:player_name]==name && item[:steals]>
-   
-   return item
- end
- }
- game_hash[:away][:players].select{|item| 
- if item[:player_name]==player
-   item.delete(:player_name)
-   return item
- end
- }
+   most=0
+   game_hash.each_value{|obj1| obj1[:players].select{|item|
+   if item[:player_name]==name
+   most=item[:steals]
+   end 
+     }}
+     game_hash.each_value{|obj1| obj1[:players].select{|item|
+   if item[:steals]>most
+   return false
+   end 
+     }}
+     return true
  end
   
 
