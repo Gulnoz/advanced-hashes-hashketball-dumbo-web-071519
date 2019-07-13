@@ -129,139 +129,134 @@ def num_points_scored(player)
   if item[:player_name] == player 
     return item[:points]
   end
- }
+  }
   game_hash[:away][:players].select{|item| 
    if item[:player_name] == player 
      return item[:points]
    end
     }
 end
+
 def shoe_size(player)
- game_hash[:home][:players].select{ |item| 
- if item[:player_name] == player 
- return item[:shoe]
-end
- }
-  game_hash[:away][:players].select{ |item| 
- if item[:player_name] == player 
- return item[:shoe]
-end
- }
+ game_hash[:home][:players].select{|item| 
+   if item[:player_name] == player 
+     return item[:shoe]
+   end
+  }
+  game_hash[:away][:players].select{|item| 
+    if item[:player_name] == player 
+      return item[:shoe]
+    end
+   }
 end
 
 def team_colors(team)
  if game_hash[:home][:team_name] == team 
- return game_hash[:home][:colors]
- 
+   return game_hash[:home][:colors]
  elsif game_hash[:away][:team_name] == team 
- return game_hash[:away][:colors]
+   return game_hash[:away][:colors]
+ end
 end
- 
-end
+
 def team_names()
- t_names=[]
+ t_names = []
  game_hash.each{|key, value|
  t_names.push(value[:team_name])}
  return t_names
 end
 
 def player_numbers(team)
- player_num=[]
+ player_num = []
  
  if game_hash[:home][:team_name] == team 
- game_hash[:home][:players].select{|item| 
- player_num.push(item[:number])}
- 
+   game_hash[:home][:players].select{|item| 
+     player_num.push(item[:number])}
  elsif game_hash[:away][:team_name] == team 
- game_hash[:away][:players].select{|item| 
- player_num.push(item[:number])}
-end
-return player_num
+   game_hash[:away][:players].select{|item| 
+     player_num.push(item[:number])}
+ end
+ return player_num
 end
 
 def player_stats(player)
- 
-  game_hash[:home][:players].select{|item| 
- if item[:player_name]==player
-   item.delete(:player_name)
-   return item
- end
- }
+ game_hash[:home][:players].select{|item| 
+   if item[:player_name] == player
+     item.delete(:player_name)
+     return item
+   end
+  }
  game_hash[:away][:players].select{|item| 
- if item[:player_name]==player
-   item.delete(:player_name)
-   return item
- end
- }
- 
+   if item[:player_name] == player
+     item.delete(:player_name)
+     return item
+   end
+  }
 end
 
 def big_shoe_rebounds
-  bigest_size=0
-  rebound=0
+  bigest_size = 0
+  rebound = 0
    game_hash.each{|key1, value1| value1[:players].select{|item| 
- if item[:shoe]>bigest_size
-   bigest_size=item[:shoe]
-   rebound=item[:rebounds]
- end
- }}
- return rebound
+     if item[:shoe] > bigest_size
+       bigest_size = item[:shoe]
+       rebound = item[:rebounds]
+     end
+    }}
+   return rebound
 end
 
 def most_points_scored
-  most_points=0
-   player=""
+  most_points = 0
+   player = ""
    game_hash.each{|key1, value1| value1[:players].select{|item| 
- if item[:points]>most_points
-   most_points=item[:points]
-   player=item[:player_name]
- end
- }}
- return player
+     if item[:points] > most_points
+       most_points = item[:points]
+       player = item[:player_name]
+     end
+    }}
+   return player
 end
   
-  def winning_team
-   home_team=0
-away_team=0
-  
- game_hash[:home][:players].select{ |item| 
- home_team += item[:points]
- #team1_name=item[:team_name]
- }
-  game_hash[:away][:players].select{ |item| 
- away_team+=item[:points]
- #team2_name=item[:team_name]
- }
- if home_team>away_team
-   return game_hash[:home][:team_name]
- else
-   return game_hash[:away][:team_name]
- end
- end
+def winning_team
+   home_team = 0
+   away_team = 0
+   game_hash[:home][:players].select{ |item| 
+     home_team += item[:points]
+    }
+   game_hash[:away][:players].select{ |item| 
+     away_team += item[:points]
+    }
+   if home_team > away_team
+      return game_hash[:home][:team_name]
+   else
+      return game_hash[:away][:team_name]
+   end
+end
  
- def player_with_longest_name
-   longest=""
+def player_with_longest_name
+   longest = ""
    game_hash.each_value{|obj1| obj1[:players].select{|item|
-   if item[:player_name].length>longest.length
-   longest=item[:player_name]
-   end }}
+     if item[:player_name].length > longest.length
+       longest = item[:player_name]
+     end 
+    }}
    return longest
- end
+end
  
- def long_name_steals_a_ton?
-   name=player_with_longest_name
-   most=0
+def long_name_steals_a_ton?
+   name = player_with_longest_name
+   most = 0
    game_hash.each_value{|obj1| obj1[:players].select{|item|
-   if item[:player_name]==name
-   most=item[:steals]
-   end 
+     if item[:player_name] == name
+       most = item[:steals]
+     end 
      }}
      game_hash.each_value{|obj1| obj1[:players].select{|item|
-   if item[:steals]>most
-   return false
-   end 
-     }}
-     return true
+       if item[:steals] > most
+         return false
+       end 
+      }}
+    return true
  end
   
 
