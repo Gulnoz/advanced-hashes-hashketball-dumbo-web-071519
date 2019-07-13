@@ -95,45 +95,44 @@ def game_hash
      rebounds: 12,
      assists: 12,
      steals: 4,
-blocks: 5,
-slam_dunks: 5
-},
-{
-player_name: "Ben Gordon",
-number: 8,
-shoe: 15,
-points: 33,
-rebounds: 3,
-assists: 2,
-steals: 1,
-blocks: 1,
-slam_dunks: 0
-},
-{
-player_name: "Kemba Walker",
-number: 33,
-shoe: 15,
-points: 6,
-rebounds: 12,
-assists: 12,
-steals: 7,
-blocks: 5,
-slam_dunks: 12
-},
-] }
-    }
+     blocks: 5,
+     slam_dunks: 5
+   },
+   {
+     player_name: "Ben Gordon",
+     number: 8,
+     shoe: 15,
+     points: 33,
+     rebounds: 3,
+     assists: 2,
+     steals: 1,
+     blocks: 1,
+     slam_dunks: 0
+   },
+   {
+     player_name: "Kemba Walker",
+     number: 33,
+     shoe: 15,
+     points: 6,
+     rebounds: 12,
+     assists: 12,
+     steals: 7,
+     blocks: 5,
+     slam_dunks: 12
+   },]}
+  }
 return hash
 end
 
 def num_points_scored(player)
- game_hash[:home][:players].select{ |item| 
- if item[:player_name] == player 
- return item[:points]
-end
+ game_hash[:home][:players].select{|item| 
+  if item[:player_name] == player 
+    return item[:points]
+  end
  }
-  game_hash[:away][:players].select{ |item| 
- if item[:player_name] == player 
- return item[:points]
+  game_hash[:away][:players].select{|item| 
+   if item[:player_name] == player 
+     return item[:points]
 end
  }
 end
